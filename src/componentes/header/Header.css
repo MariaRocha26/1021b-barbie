@@ -17,8 +17,3 @@ header nav ul{
     gap: 15px;
     align-items: center;
 }
-.barra-pesquisa{
-    height: 30px;
-    border: 1 px solid #f0f0f0;
-    width: 300px;
-}
