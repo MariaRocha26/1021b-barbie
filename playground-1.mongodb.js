@@ -164,7 +164,7 @@ db.cake.insertOne(
         _id: ObjectId ("111111111111"),
         nome: "Bolo de Fubá",
         peso: "1,5 kg",
-        preco: "50 reais",
+        preco: 50,
         ingredientes:[
             {
                 nome:"Ovos",
@@ -203,7 +203,7 @@ db.cake.insertOne(
         _id: ObjectId ("222222222222"),
         nome: "Bolo de Chocolate",
         peso: "2 kg",
-        preco: "80 reais",
+        preco: 70,
         ingredientes:[
             {
                 nome:"Ovos",
@@ -242,7 +242,7 @@ db.cake.insertOne(
         _id: ObjectId ("333333333333"),
         nome: "Bolo de Limão",
         peso: "2,5 kg",
-        preco: "90 reais",
+        preco: 90,
         ingredientes:[
             {
                 nome:"Ovos",
@@ -281,7 +281,7 @@ db.cake.insertOne(
         _id: ObjectId ("444444444444"),
         nome: "Bolo de Red Velvet",
         peso: "3 kg",
-        preco: "150 reais",
+        preco: 150,
         ingredientes:[
             {
                 nome:"Ovos",
@@ -329,11 +329,36 @@ db.cake.deleteOne({_id:ObjectId("111111111111")});
 
 
 /////////// Atividade 4 ///////////////
+use("db_patissier");
+db.cake.find({}, { _id: 0, nome: 1, preco: 1 });
 
+/////////// Atividade 5 ///////////////
+use("db_patissier");
+db.cake.find({ preco: { $lte: 70 } }, { _id: 0, nome: 1, preco: 1 });
 
+/////////// Atividade 6 ///////////////
+use("db_patissier");
+db.cake.updateOne({ _id: ObjectId('222222222222') },
+    {
+    $set: {
+    nome: "Bolo de Prestigio",
+    peso: "4 kg",
+    },
+    $push: {
+    ingrediente: {
+    nome: "Coco Ralado",
+    quantidade: 3,
+    },
+   },
+}
+);
 
-
-
+/////////// Atividade 7 ///////////////
+use("db_patissier");
+db.cake.updateOne({ _id: ObjectId('444444444444'), "ingrediente.nome": "Ovos" },
+   {$set: {"ingrediente.$.quantidade": 3,
+            },
+    });
 
 
 
